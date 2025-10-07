@@ -9,25 +9,29 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <style>
     body {
-      font-family: "Poppins", sans-serif;
-      background: #f5f7fa;
+      font-family: "Comic Sans MS", "Comic Sans", cursive;
+      background: linear-gradient(to bottom right, #87ceeb, #b3e5fc);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      color: #d2b48c; /* coklat muda */
     }
 
     .container {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      padding: 25px 35px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      padding: 30px 40px;
       width: 400px;
+      text-align: left;
     }
 
     h2 {
       text-align: center;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      font-size: 28px;
+      color: #a0522d; /* coklat lebih tua untuk judul */
     }
 
     .input-group {
@@ -39,35 +43,42 @@
     input {
       width: 70%;
       padding: 8px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      border: 2px solid #a0522d;
+      border-radius: 10px;
+      background-color: #fff8f0;
+      color: #5c4033;
+      font-family: inherit;
     }
 
     button {
       width: 25%;
-      background: #007bff;
+      background: #1e90ff;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
       transition: 0.3s;
+      font-family: inherit;
+      font-weight: bold;
     }
 
     button:hover {
-      background: #0056b3;
+      background: #4682b4;
     }
 
     hr {
       margin: 20px 0;
+      border: 1px solid #d2b48c;
     }
 
     p {
-      margin: 6px 0;
-      font-size: 15px;
+      margin: 8px 0;
+      font-size: 16px;
     }
 
     span {
       font-weight: bold;
+      color: #8b4513; /* coklat sedang untuk highlight */
     }
   </style>
 </head>
@@ -119,7 +130,6 @@
       });
     }
 
-    // tombol "Get" ditekan
     $("#btnGet").on("click", function () {
       const lokasi = $("#inputLokasi").val();
       if (lokasi === "") {
@@ -129,7 +139,6 @@
       getWeather(lokasi);
     });
 
-    // default: tampilkan cuaca Yogyakarta saat pertama kali
     $(document).ready(function () {
       getWeather("Yogyakarta");
     });
