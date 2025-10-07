@@ -60,11 +60,20 @@
     .input-group {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       margin-bottom: 20px;
+      gap: 8px;
+    }
+
+    .label-lokasi {
+      font-weight: bold;
+      color: #8b4513;
+      font-size: 16px;
+      white-space: nowrap;
     }
 
     input {
-      width: 70%;
+      flex: 1;
       padding: 8px;
       border: 2px solid #a0522d;
       border-radius: 10px;
@@ -74,7 +83,6 @@
     }
 
     button {
-      width: 25%;
       background: #1e90ff;
       color: white;
       border: 2px solid #000;
@@ -83,6 +91,7 @@
       transition: 0.3s;
       font-family: inherit;
       font-weight: bold;
+      padding: 8px 16px;
     }
 
     button:hover {
@@ -103,6 +112,15 @@
       font-weight: bold;
       color: #8b4513;
     }
+
+    .section-title {
+      text-align: left;
+      font-weight: bold;
+      color: #8b4513;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      font-size: 17px;
+    }
   </style>
 </head>
 <body>
@@ -118,6 +136,7 @@
     <h2>Cuaca</h2>
 
     <div class="input-group">
+      <label class="label-lokasi" for="inputLokasi">Lokasi:</label>
       <input type="text" id="inputLokasi" placeholder="Masukkan lokasi...">
       <button id="btnGet">Get</button>
     </div>
@@ -127,6 +146,7 @@
       <p><span>Suhu Fahrenheit:</span> <span id="fahrenheit">-</span> °F</p>
       <p><span>Kelembapan:</span> <span id="humidity">-</span> %</p>
       <hr>
+      <div class="section-title">Lokasi</div>
       <p><span>Negara:</span> <span id="negara">-</span></p>
       <p><span>Provinsi:</span> <span id="region">-</span></p>
       <p><span>Kota:</span> <span id="kota">-</span></p>
