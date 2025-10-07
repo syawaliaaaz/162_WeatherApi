@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cuaca</title>
+  <title>Weather</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -20,7 +20,6 @@
       position: relative;
     }
 
-    /* --- background emot awan & cuaca --- */
     .emoji {
       position: absolute;
       font-size: 60px;
@@ -65,7 +64,7 @@
       gap: 8px;
     }
 
-    .label-lokasi {
+    .label-location {
       font-weight: bold;
       color: #8b4513;
       font-size: 16px;
@@ -125,7 +124,6 @@
 </head>
 <body>
 
-  <!-- emot awan & cuaca -->
   <div class="emoji">☁️</div>
   <div class="emoji">🌤️</div>
   <div class="emoji">🌧️</div>
@@ -133,32 +131,32 @@
   <div class="emoji">🌦️</div>
 
   <div class="container">
-    <h2>Cuaca</h2>
+    <h2>Weather</h2>
 
     <div class="input-group">
-      <label class="label-lokasi" for="inputLokasi">Lokasi:</label>
-      <input type="text" id="inputLokasi" placeholder="Masukkan lokasi...">
+      <label class="label-location" for="inputLocation">Location:</label>
+      <input type="text" id="inputLocation" placeholder="Enter location...">
       <button id="btnGet">Get</button>
     </div>
 
-    <div id="hasil">
-      <p><span>Suhu Celcius:</span> <span id="celcius">-</span> °C</p>
-      <p><span>Suhu Fahrenheit:</span> <span id="fahrenheit">-</span> °F</p>
-      <p><span>Kelembapan:</span> <span id="humidity">-</span> %</p>
+    <div id="result">
+      <p><span>Temperature (Celsius):</span> <span id="celcius">-</span> °C</p>
+      <p><span>Temperature (Fahrenheit):</span> <span id="fahrenheit">-</span> °F</p>
+      <p><span>Humidity:</span> <span id="humidity">-</span> %</p>
       <hr>
-      <div class="section-title">Lokasi</div>
-      <p><span>Negara:</span> <span id="negara">-</span></p>
-      <p><span>Provinsi:</span> <span id="region">-</span></p>
-      <p><span>Kota:</span> <span id="kota">-</span></p>
+      <div class="section-title">Location Details</div>
+      <p><span>Country:</span> <span id="country">-</span></p>
+      <p><span>Region:</span> <span id="region">-</span></p>
+      <p><span>City:</span> <span id="city">-</span></p>
       <p><span>Longitude:</span> <span id="lon">-</span></p>
       <p><span>Latitude:</span> <span id="lat">-</span></p>
     </div>
   </div>
 
   <script>
-    function getWeather(lokasi) {
+    function getWeather(location) {
       const key = "0ba1bb92392642029f365553250710";
-      const urlapi = `https://api.weatherapi.com/v1/current.json?key=${key}&q=${lokasi}&aqi=no`;
+      const urlapi = `https://api.weatherapi.com/v1/current.json?key=${key}&q=${location}&aqi=no`;
 
       $.ajax({
         url: urlapi,
@@ -167,26 +165,26 @@
           $("#celcius").text(data.current.temp_c);
           $("#fahrenheit").text(data.current.temp_f);
           $("#humidity").text(data.current.humidity);
-          $("#negara").text(data.location.country);
+          $("#country").text(data.location.country);
           $("#region").text(data.location.region);
-          $("#kota").text(data.location.name);
+          $("#city").text(data.location.name);
           $("#lon").text(data.location.lon);
           $("#lat").text(data.location.lat);
         },
         error: function (err) {
-          alert("Lokasi tidak ditemukan atau terjadi kesalahan!");
+          alert("Location not found or an error occurred!");
           console.log(err);
         }
       });
     }
 
     $("#btnGet").on("click", function () {
-      const lokasi = $("#inputLokasi").val();
-      if (lokasi === "") {
-        alert("Masukkan nama kota terlebih dahulu!");
+      const location = $("#inputLocation").val();
+      if (location === "") {
+        alert("Please enter a location first!");
         return;
       }
-      getWeather(lokasi);
+      getWeather(location);
     });
 
     $(document).ready(function () {
